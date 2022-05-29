@@ -8,6 +8,8 @@ client/pnpm-debug.log*
 client/lerna-debug.log*
 
 client/node_modules
+smart_contract/node_modules
+smart_contract/test
 client/dist
 client/dist-ssr
 *.local
