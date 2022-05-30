@@ -12,7 +12,7 @@ function Navbar() {
         </div>
         <ul className='text-white md:flex hidden list-none flex-row ml-10 justify-between items-center'>
             {['Market', 'Exchange', 'Tutorials', 'Wallets'].map((item) => {
-                return <li className='px-3 py-2 mx-1'>
+                return <li key={'#' + item} className='px-3 py-2 mx-1'>
                     {item}
                 </li>
             })}
@@ -30,7 +30,7 @@ function Navbar() {
                     <AiOutlineClose onClick={() => setToggle(!toggle)} className='bg-[#dd0000] w-[25px] h-[25px] p-1 font-bold rounded-full transition duration-150 ease-linear hover:bg-[#bb0000]' />
                 </li>
                 {['Market', 'Exchange', 'Tutorials', 'Wallets'].map((item) => {
-                    return <li className='px-3 py-2 mx-1 text-white cursor-pointer'>
+                    return <li key={'#' + item} className='px-3 py-2 mx-1 text-white cursor-pointer'>
                         {item}
                     </li>
                 })}

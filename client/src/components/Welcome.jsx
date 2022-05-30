@@ -2,10 +2,13 @@ import React from 'react'
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { BsInfoCircle } from 'react-icons/bs'
 import { SiEthereum } from 'react-icons/si'
+import { TransactionContext } from '../context/TransactionContext'
 
 const commonStyle = 'border-[0.5px] sm:px-0 px-2 min-h-[70px] sm:min-w-[120px] border-gray-400 flex justify-center items-center text-gray-400'
 
 function Welcome() {
+
+  const { connectWallet, currentAccount } = React.useContext(TransactionContext);
 
   const [ethAddrTo, setEthAddrTo] = React.useState('')
   const [amount, setAmount] = React.useState()
@@ -38,13 +41,6 @@ function Welcome() {
 
   }
 
-  // to connect to the wallet
-  const connectWallet = () => {
-
-    console.log('Connecting...')
-
-  }
-
   // to send ethereum
   const sendNow = () => {
 
@@ -65,13 +61,17 @@ function Welcome() {
           Explore the crypto world. Buy and Sell cryptocurrencies in NHR Krypto
         </p>
 
-        <button
-          type='button'
-          onClick={connectWallet}
-          className='flex flex-row justify-center items-center rounded-full text-white bg-[#2952e3] my-5 py-2 px-3 hover:bg-[#102e99] transition duration-150'
-        >
-          <p className='text-base font-semibold'>Connect Wallet</p>
-        </button>
+        {
+          !currentAccount && (
+            <button
+              type='button'
+              onClick={connectWallet}
+              className='flex flex-row justify-center items-center rounded-full text-white bg-[#2952e3] my-5 py-2 px-3 hover:bg-[#102e99] transition duration-150'
+            >
+              <p className='text-base font-semibold'>Connect Wallet</p>
+            </button>
+          )
+        }
 
         <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
 
@@ -112,7 +112,9 @@ function Welcome() {
             </div>
 
             <div className='flex flex-col items-start justify-end w-full'>
-              <p className='text-white text-sm font-light'>Address</p>
+              <p className='text-white text-sm font-light' style={{fontSize: '10px'}}>
+                { !currentAccount ? 'Address' : currentAccount }
+              </p>
               <p className='text-white font-semibold'>Ethereum</p>
             </div>
 
